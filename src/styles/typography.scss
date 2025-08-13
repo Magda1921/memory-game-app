@@ -1,16 +1,4 @@
 @use "variables" as *;
-h1 {
-  font-size: map-get($font-sizes, "3xl");
-}
-h2 {
-  font-size: map-get($font-sizes, "2xl");
-}
-h3 {
-  font-size: map-get($font-sizes, "xl");
-}
-h4 {
-  font-size: map-get($font-sizes, "lg");
-}
 h1,
 h2,
 h3,

@@ -2753,25 +2753,19 @@ body {
   }
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-h1 {
+.heading-1 {
   font-size: 36px;
 }
 
-h2 {
+.heading-2 {
   font-size: 32px;
 }
 
-h3 {
+.heading-3 {
   font-size: 24px;
 }
 
-h4 {
+.heading-4 {
   font-size: 20px;
 }
 
