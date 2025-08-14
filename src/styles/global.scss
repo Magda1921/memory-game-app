@@ -1,0 +1,39 @@
+@use "variables";
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 1rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(
+    135deg,
+    variables.$color-bg-gradient-start,
+    variables.$color-bg-gradient-end
+  );
+  color: variables.$color-text-primary;
+  display: flex;
+
+  @include variables.respond-up(md) {
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.heading-1 {
+  font-size: map-get(variables.$font-sizes, "3xl");
+}
+.heading-2 {
+  font-size: map-get(variables.$font-sizes, "2xl");
+}
+.heading-3 {
+  font-size: map-get(variables.$font-sizes, "xl");
+}
+.heading-4 {
+  font-size: map-get(variables.$font-sizes, "lg");
+}
