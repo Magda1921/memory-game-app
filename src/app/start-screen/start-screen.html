@@ -19,5 +19,9 @@
       [(ngModel)]="selectedDifficulty"
     ></app-select>
   </div>
-  <button type="submit" class="mt-16 p-12 js-start-button">Start game</button>
+  <app-button
+    label="Start game"
+    variantClass="primary"
+    (click)="startGame()"
+  ></app-button>
 </section>
