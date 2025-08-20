@@ -1,0 +1,12 @@
+<label for="select">{{ label() }}</label>
+<select
+  id="select"
+  [ngModel]="selectedValue()"
+  (ngModelChange)="onChange($event)"
+>
+  @for (option of options(); track option.value) {
+    <option [value]="option.value">
+      {{ option.label }}
+    </option>
+  }
+</select>

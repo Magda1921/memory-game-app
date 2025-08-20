@@ -9,12 +9,15 @@
     ></input-text>
   </div>
   <div class="start__difficulty">
-    <label for="difficulty">Difficulty level:</label>
-    <select id="difficulty" class="js-difficulty">
-      <option value="easy">Easy</option>
-      <option value="medium">Medium</option>
-      <option value="hard">Hard</option>
-    </select>
+    <app-select
+      label="Difficulty level:"
+      [options]="[
+        { value: 'easy', label: 'Easy' },
+        { value: 'medium', label: 'Medium' },
+        { value: 'hard', label: 'Hard' },
+      ]"
+      [(ngModel)]="selectedDifficulty"
+    ></app-select>
   </div>
   <button type="submit" class="mt-16 p-12 js-start-button">Start game</button>
 </section>
