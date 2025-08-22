@@ -1,4 +1,6 @@
+@use "sass:map";
 @use "variables";
+
 *,
 *::before,
 *::after {
@@ -25,15 +27,13 @@ body {
     align-items: center;
   }
 }
-.heading-1 {
-  font-size: map-get(variables.$font-sizes, "3xl");
-}
+
 .heading-2 {
-  font-size: map-get(variables.$font-sizes, "2xl");
+  font-size: map.get(variables.$font-sizes, "2xl");
 }
 .heading-3 {
-  font-size: map-get(variables.$font-sizes, "xl");
+  font-size: map.get(variables.$font-sizes, "xl");
 }
 .heading-4 {
-  font-size: map-get(variables.$font-sizes, "lg");
+  font-size: map.get(variables.$font-sizes, "lg");
 }
