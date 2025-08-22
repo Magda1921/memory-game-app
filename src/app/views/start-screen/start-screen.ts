@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { InputText } from '../input-text/input-text';
-import { Select } from '../select/select';
+import { InputText } from '../../components/input-text/input-text';
+import { Select } from '../../components/select/select';
 import { FormsModule } from '@angular/forms';
-import { Button } from '../button/button';
+import { Button } from '../../components/button/button';
 
 @Component({
   selector: 'start-screen',
