@@ -16,12 +16,18 @@
         { value: 'medium', label: 'Medium' },
         { value: 'hard', label: 'Hard' },
       ]"
-      [(ngModel)]="selectedDifficulty"
+      [selectedValue]="'easy'"
     ></app-select>
   </div>
   <app-button
     label="Start game"
     variantClass="primary"
+    (click)="startGame()"
+  ></app-button>
+  <app-button
+    label="Start game"
+    variantClass="primary"
+    icon="favicon.png"
     (click)="startGame()"
   ></app-button>
 </section>

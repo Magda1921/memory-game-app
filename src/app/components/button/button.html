@@ -1,3 +1,8 @@
-<button [ngClass]="['btn', variantClass()]" type="submit" (click)="onClick()">
+<button
+  [disabled]="disabled()"
+  [ngClass]="['btn', variantClass()]"
+  type="submit"
+  (click)="onClick()"
+>
   {{ label() }}
 </button>

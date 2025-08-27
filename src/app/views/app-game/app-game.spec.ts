@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppGame } from './app-game';
+import { provideZonelessChangeDetection } from '@angular/core';
 
 describe('AppGame', () => {
   let component: AppGame;
@@ -8,16 +9,14 @@ describe('AppGame', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppGame]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(AppGame);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+      imports: [AppGame],
+      providers: [provideZonelessChangeDetection()],
+    }).compileComponents();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const fixture = TestBed.createComponent(AppGame);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
   });
 });
