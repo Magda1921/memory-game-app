@@ -26,7 +26,10 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles/main.scss"]
+            "styles": ["src/styles/main.scss"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/styles"]
+            }
           },
           "configurations": {
             "production": {
@@ -78,7 +81,10 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles/main.scss"]
+            "styles": ["src/styles/main.scss"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/styles"]
+            }
           }
         },
         "lint": {
