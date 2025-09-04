@@ -1,5 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { Unsplash, UnsplashPhoto } from '@app/services/unsplash';
+import { Unsplash } from '@app/services/unsplash';
+import { UnsplashPhoto } from '@app/types/unsplash';
 
 @Component({
   selector: 'memory-card-grid',
