@@ -1,0 +1,7 @@
+<div class="memo-grid">
+  @for (img of images(); track img) {
+    <div class="card">
+      <img [src]="img" alt="Memory image {{ img }}" />
+    </div>
+  }
+</div>
