@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('Button', () => {
   let fixture: ComponentFixture<Button>;
@@ -16,7 +16,7 @@ describe('Button', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Button, CommonModule, RouterTestingModule],
+      imports: [Button, CommonModule, MatIconModule],
       providers: [provideZonelessChangeDetection()],
     }).compileComponents();
 
@@ -73,5 +73,15 @@ describe('Button', () => {
     const buttonEl = getButton();
     buttonEl.click();
     expect(fixture.componentInstance.buttonClick.emit).toHaveBeenCalled();
+  });
+
+  it('should render an icon when icon is provided', () => {
+    fixture.componentRef.setInput('icon', 'home');
+    fixture.componentRef.setInput('label', '');
+    fixture.detectChanges();
+
+    const iconEl = fixture.debugElement.query(By.css('mat-icon'));
+    expect(iconEl).toBeTruthy();
+    expect(iconEl.nativeElement.textContent).toContain('home');
   });
 });

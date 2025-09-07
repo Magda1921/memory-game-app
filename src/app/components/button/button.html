@@ -4,5 +4,9 @@
   type="submit"
   (click)="onClick()"
 >
-  {{ label() }}
+  @if (icon() && !label()) {
+    <mat-icon>{{ icon() }}</mat-icon>
+  } @else {
+    {{ label() }}
+  }
 </button>
