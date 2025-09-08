@@ -27,9 +27,13 @@ export class Select implements ControlValueAccessor {
 
   selectControl!: FormControl;
 
-  writeValue(value: string): void {}
+  writeValue(value: string): void {
+    this.onChange(value);
+  }
 
-  registerOnChange(fn: (value: string) => void): void {}
+  registerOnChange(fn: (value: string) => void): void {
+    this.onChange = fn;
+  }
 
   registerOnTouched(fn: () => void): void {}
 
