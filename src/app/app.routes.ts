@@ -1,15 +1,16 @@
 import { Routes } from '@angular/router';
 import { StartScreen } from './views/start-screen/start-screen';
 import { AppGame } from './views/app-game/app-game';
+import { PATHS } from 'constants/paths';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/start-screen', pathMatch: 'full' },
+  { path: '', redirectTo: PATHS.start, pathMatch: 'full' },
   {
-    path: 'start-screen',
+    path: PATHS.start,
     component: StartScreen,
   },
   {
-    path: 'app-game',
+    path: PATHS.app,
     component: AppGame,
   },
 ];

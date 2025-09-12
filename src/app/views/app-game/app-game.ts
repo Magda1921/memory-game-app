@@ -10,15 +10,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AppGame {
   playerName = '';
-  difficulty: 'easy' | 'medium' | 'hard' = 'easy';
+  difficulty: DifficultyEnum = DifficultyEnum.Easy;
   countOfImages = 0;
 
   constructor(private route: ActivatedRoute) {}
 
   difficulties: Record<string, number> = {
-    easy: 8,
-    medium: 12,
-    hard: 16,
+    [DifficultyEnum.Easy]: 8,
+    [DifficultyEnum.Medium]: 12,
+    [DifficultyEnum.Hard]: 16,
   };
 
   ngOnInit() {
@@ -29,4 +29,9 @@ export class AppGame {
       this.countOfImages = this.difficulties[this.difficulty];
     });
   }
+}
+export enum DifficultyEnum {
+  Easy = 'easy',
+  Medium = 'medium',
+  Hard = 'hard',
 }
