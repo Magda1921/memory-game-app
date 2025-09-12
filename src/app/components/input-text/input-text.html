@@ -1,2 +1,9 @@
 <label [for]="id()">{{ label() }}</label>
-<input type="text()" [id]="id()" [placeholder]="placeholder()" />
+<input
+  type="text()"
+  [id]="id()"
+  [placeholder]="placeholder()"
+  [value]="value()"
+  (input)="handleInput($event)"
+  (blur)="handleBlur()"
+/>

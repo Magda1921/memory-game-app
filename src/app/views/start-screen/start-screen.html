@@ -6,6 +6,7 @@
       placeholder="Enter your name"
       name="playerName"
       label="Player name:"
+      [(ngModel)]="playerName"
     ></input-text>
   </div>
   <div class="start__difficulty">
@@ -17,6 +18,7 @@
         { value: 'hard', label: 'Hard' },
       ]"
       [selectedValue]="'easy'"
+      [(ngModel)]="selectedDifficulty"
     ></app-select>
   </div>
   <app-button
