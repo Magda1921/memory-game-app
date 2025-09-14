@@ -9,8 +9,7 @@ import { catchError, map, Observable } from 'rxjs';
 })
 export class Unsplash {
   private apiUrl = 'https://api.unsplash.com/search/photos';
-  private accessKey: string =
-    environment.UNSPLASH_API_KEY || process.env['UNSPLASH_KEY'] || '';
+  private accessKey: string = environment.UNSPLASH_API_KEY;
 
   constructor(private http: HttpClient) {}
 
