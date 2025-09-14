@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UnsplashPhoto, UnsplashResponse } from '@app/types/unsplash';
-import { environment } from 'environments/environment.development';
+import { environment } from 'environments/environment';
+
 import { catchError, map, Observable } from 'rxjs';
 
 @Injectable({
