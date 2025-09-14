@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "npm run config && ng build",
     "watch": "ng build --watch --configuration development",
-    "config": "ts-node src/environments/set-env.ts",
+    "config": "node src/environments/set-env.ts",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
