@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UnsplashPhoto, UnsplashResponse } from '@app/types/unsplash';
-import { environment } from 'environments/environment.development';
+import { environment } from 'environments/environment';
+
 import { catchError, map, Observable } from 'rxjs';
 
 @Injectable({
@@ -9,8 +10,7 @@ import { catchError, map, Observable } from 'rxjs';
 })
 export class Unsplash {
   private apiUrl = 'https://api.unsplash.com/search/photos';
-  private accessKey: string =
-    environment.UNSPLASH_API_KEY || process.env['UNSPLASH_KEY'] || '';
+  private accessKey: string = environment.UNSPLASH_API_KEY;
 
   constructor(private http: HttpClient) {}
 
