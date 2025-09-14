@@ -30,6 +30,8 @@
     "@angular/material": "^20.2.1",
     "@angular/platform-browser": "^20.1.0",
     "@angular/router": "^20.1.0",
+    "colors": "^1.4.0",
+    "dotenv": "^17.2.2",
     "modern-normalize": "^3.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
