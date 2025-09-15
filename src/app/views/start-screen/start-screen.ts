@@ -4,6 +4,7 @@ import { Select } from '../../components/select/select';
 import { FormsModule } from '@angular/forms';
 import { Button } from '../../components/button/button';
 import { Router } from '@angular/router';
+import { PATHS } from 'constants/paths';
 
 @Component({
   selector: 'start-screen',
@@ -18,7 +19,11 @@ export class StartScreen {
   constructor(private router: Router) {}
 
   startGame(): void {
-    this.router.navigate(['/app-game'], {
+    if (!this.playerName || this.playerName.trim() === '') {
+      alert('Please enter your player name!');
+      return;
+    }
+    this.router.navigate([PATHS.app], {
       queryParams: {
         name: this.playerName,
         difficulty: this.selectedDifficulty,

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MemoryCardGrid } from '../memory-card-grid/memory-card-grid';
 import { ActivatedRoute } from '@angular/router';
+import { DifficultyEnum } from 'constants/gameDifficulties';
 
 @Component({
   selector: 'app-game',
@@ -15,7 +16,7 @@ export class AppGame {
 
   constructor(private route: ActivatedRoute) {}
 
-  difficulties: Record<string, number> = {
+  difficulties: Record<DifficultyEnum, number> = {
     [DifficultyEnum.Easy]: 8,
     [DifficultyEnum.Medium]: 12,
     [DifficultyEnum.Hard]: 16,
@@ -23,15 +24,10 @@ export class AppGame {
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
-      this.playerName = params['name'] || 'Anonim';
-      this.difficulty = params['difficulty'] || 'easy';
+      this.playerName = params['name'];
+      this.difficulty = params['difficulty'] || DifficultyEnum.Easy;
 
       this.countOfImages = this.difficulties[this.difficulty];
     });
   }
-}
-export enum DifficultyEnum {
-  Easy = 'easy',
-  Medium = 'medium',
-  Hard = 'hard',
 }
