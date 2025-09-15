@@ -4,10 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "npm run config && ng build",
     "watch": "ng build --watch --configuration development",
+    "config": "node src/environments/set-env.js",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "e2e": "ng e2e"
   },
   "prettier": {
     "overrides": [
@@ -28,6 +30,8 @@
     "@angular/material": "^20.2.1",
     "@angular/platform-browser": "^20.1.0",
     "@angular/router": "^20.1.0",
+    "colors": "^1.4.0",
+    "dotenv": "^17.2.2",
     "modern-normalize": "^3.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
@@ -37,6 +41,7 @@
     "@angular/cli": "^20.1.5",
     "@angular/compiler-cli": "^20.1.0",
     "@types/jasmine": "~5.1.0",
+    "@types/node": "^24.3.1",
     "angular-eslint": "20.1.1",
     "eslint": "^9.29.0",
     "eslint-config-prettier": "^10.1.8",
