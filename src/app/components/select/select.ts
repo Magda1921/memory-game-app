@@ -1,5 +1,10 @@
-import { Component, input, output } from '@angular/core';
-import { FormControl, FormsModule } from '@angular/forms';
+import { Component, forwardRef, input, output } from '@angular/core';
+import {
+  ControlValueAccessor,
+  FormControl,
+  FormsModule,
+  NG_VALUE_ACCESSOR,
+} from '@angular/forms';
 import { SelectOption } from '@app/types/selectOptions';
 
 @Component({
@@ -7,13 +12,30 @@ import { SelectOption } from '@app/types/selectOptions';
   imports: [FormsModule],
   templateUrl: './select.html',
   styleUrl: './select.scss',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => Select),
+      multi: true,
+    },
+  ],
 })
-export class Select {
+export class Select implements ControlValueAccessor {
   label = input('');
   options = input<SelectOption[]>([]);
   selectedValue = input('');
 
   selectControl!: FormControl;
+
+  writeValue(value: string): void {
+    this.onChange(value);
+  }
+
+  registerOnChange(fn: (value: string) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {}
 
   valueChange = output<string>();
   ngOnInit(): void {

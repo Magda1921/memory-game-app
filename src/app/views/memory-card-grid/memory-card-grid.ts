@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, input, OnInit, signal } from '@angular/core';
 import { Unsplash } from '@app/services/unsplash';
 import { UnsplashPhoto } from '@app/types/unsplash';
 
@@ -10,12 +10,13 @@ import { UnsplashPhoto } from '@app/types/unsplash';
 })
 export class MemoryCardGrid implements OnInit {
   images = signal<string[]>([]);
+  countOfImages = input.required<number>();
 
   constructor(private unsplashService: Unsplash) {}
 
   ngOnInit(): void {
     this.unsplashService
-      .fetchImages('nature', 12)
+      .fetchImages('nature', this.countOfImages())
       .subscribe((photos: UnsplashPhoto[]) => {
         this.images.set(photos.map((photo) => photo.urls.small));
       });
