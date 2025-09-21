@@ -4,10 +4,10 @@ import { AppGame } from './views/app-game/app-game';
 import { PATHS } from 'constants/paths';
 
 export const routes: Routes = [
-  { path: '', redirectTo: PATHS.start, pathMatch: 'full' },
   {
-    path: PATHS.start,
+    path: '',
     component: StartScreen,
+    pathMatch: 'full',
   },
   {
     path: PATHS.app,
