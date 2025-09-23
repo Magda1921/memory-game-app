@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { Button } from '../../components/button/button';
 import { Router } from '@angular/router';
 import { PATHS } from 'constants/paths';
+import { GameStateService } from '@app/services/game-state';
+import { DifficultyEnum } from 'constants/gameDifficulties';
 
 @Component({
   selector: 'start-screen',
@@ -13,21 +15,23 @@ import { PATHS } from 'constants/paths';
   styleUrl: './start-screen.scss',
 })
 export class StartScreen {
-  selectedDifficulty = '';
+  selectedDifficulty = DifficultyEnum.Easy;
   playerName = '';
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private gameStateService: GameStateService,
+  ) {}
 
   startGame(): void {
     if (!this.playerName || this.playerName.trim() === '') {
       alert('Please enter your player name!');
       return;
     }
-    this.router.navigate([PATHS.app], {
-      queryParams: {
-        name: this.playerName,
-        difficulty: this.selectedDifficulty,
-      },
+    this.gameStateService.setState({
+      name: this.playerName,
+      difficulty: this.selectedDifficulty,
     });
+    this.router.navigate([PATHS.app]);
   }
 }
