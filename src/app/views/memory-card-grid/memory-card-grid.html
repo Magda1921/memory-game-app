@@ -1,6 +1,6 @@
 <div class="memo-grid">
-  @for (img of images(); track img) {
-    <div class="card">
+  @for (img of images(); track $index) {
+    <div class="card" (click)="flipCard($event)">
       <img [src]="img" alt="Memory image {{ img }}" />
     </div>
   }
