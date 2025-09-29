@@ -1,3 +1,4 @@
+@use "variables" as *;
 .memo-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -7,6 +8,7 @@
   padding: 0.625rem;
 
   .card {
+    background-color: $color-blue-gray;
     position: relative;
     aspect-ratio: 1 / 1;
     border-radius: 0.75rem;
@@ -22,10 +24,14 @@
     }
 
     img {
+      opacity: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
+  }
+  .card--flipped img {
+    opacity: 1;
   }
 }

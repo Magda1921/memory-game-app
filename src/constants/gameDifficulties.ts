@@ -5,7 +5,7 @@ export enum DifficultyEnum {
 }
 
 export const difficulties: Record<DifficultyEnum, number> = {
-  [DifficultyEnum.Easy]: 8,
-  [DifficultyEnum.Medium]: 12,
-  [DifficultyEnum.Hard]: 16,
+  [DifficultyEnum.Easy]: 4,
+  [DifficultyEnum.Medium]: 6,
+  [DifficultyEnum.Hard]: 8,
 };

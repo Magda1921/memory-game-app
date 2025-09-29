@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MemoryCardGrid } from '../memory-card-grid/memory-card-grid';
-import { ActivatedRoute } from '@angular/router';
 import { difficulties, DifficultyEnum } from 'constants/gameDifficulties';
 import { GameStateService } from '@app/services/game-state';
 
@@ -15,10 +14,7 @@ export class AppGame {
   difficulty: DifficultyEnum = DifficultyEnum.Easy;
   countOfImages = 0;
 
-  constructor(
-    private route: ActivatedRoute,
-    private gameStateService: GameStateService,
-  ) {}
+  constructor(private gameStateService: GameStateService) {}
 
   ngOnInit() {
     this.gameStateService.state$.subscribe((state) => {
