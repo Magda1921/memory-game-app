@@ -32,5 +32,6 @@ export class MemoryCardGrid implements OnInit {
   }
   flipCard(event: Event): void {
     this.flippedCards.set(this.gameHelper.flipCard(event, this.flippedCards()));
+    this.gameHelper.checkIfGameWon();
   }
 }
