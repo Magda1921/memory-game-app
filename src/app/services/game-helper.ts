@@ -97,7 +97,8 @@ export class GameHelper {
     if (state.endGame) {
       return;
     }
-    state.endGame = new Date();
+    state.endGame = Date.now();
+    state.score = this.countPoints(state);
     this.showCongratulationAlert(state);
   }
   isFoundAllPairs(state: GameState): boolean {
@@ -107,10 +108,19 @@ export class GameHelper {
     if (state.endGame) {
       alert(
         `Congratulations ${state.name}! You won the game in ${
-          (state.endGame.getTime() - state.startGame.getTime()) / 1000
+          (state.endGame - state.startGame) / 1000
         } seconds.`,
       );
     }
+  }
+  countPoints(state: GameState): number {
+    const basePoints = 100;
+    if (!state.endGame) {
+      return 0;
+    }
+    const timeBonus =
+      (state.endGame - state.startGame) / difficulties[state.difficulty];
+    return basePoints + timeBonus;
   }
 }
 export const GAME_CONFIG = {

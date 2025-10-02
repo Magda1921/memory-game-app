@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { DifficultyEnum } from 'constants/gameDifficulties';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Timestamp } from 'rxjs';
 
 export interface GameState {
   name: string;
   difficulty: DifficultyEnum;
-  startGame: Date;
-  endGame?: Date;
+  startGame: number;
+  endGame?: number;
   foundPairs?: number;
+  score?: number;
 }
 
 @Injectable({
