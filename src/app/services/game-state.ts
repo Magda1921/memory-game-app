@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { DifficultyEnum } from 'constants/gameDifficulties';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Timestamp } from 'rxjs';
 
-interface GameState {
+export interface GameState {
   name: string;
   difficulty: DifficultyEnum;
+  startGame: number;
+  endGame?: number;
+  foundPairs?: number;
+  score?: number;
 }
 
 @Injectable({
@@ -16,5 +20,14 @@ export class GameStateService {
 
   setState(state: GameState) {
     this.stateSubject.next(state);
+  }
+  incrementFoundPairs() {
+    const currentState = this.stateSubject.getValue();
+    if (currentState) {
+      this.stateSubject.next({
+        ...currentState,
+        foundPairs: currentState.foundPairs ? currentState.foundPairs + 1 : 1,
+      });
+    }
   }
 }

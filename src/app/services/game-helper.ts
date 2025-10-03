@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
+import { GameState, GameStateService } from './game-state';
+import { difficulties } from 'constants/gameDifficulties';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GameHelper {
+  constructor(private gameStateService: GameStateService) {}
+
   flipCard(event: Event, flippedCards: Set<HTMLElement>): Set<HTMLElement> {
     if (flippedCards.size >= GAME_CONFIG.MAX_FLIPPED_CARDS) {
       return flippedCards;
@@ -11,7 +15,7 @@ export class GameHelper {
     const card = this.getCardElement(event);
     flippedCards.add(card);
     card.classList.toggle(GAME_CONFIG.FLIPPED_CARD_CLASS);
-    if (flippedCards.size === 2) {
+    if (flippedCards.size === GAME_CONFIG.MAX_FLIPPED_CARDS) {
       return this.handlePairCheck(flippedCards);
     }
     return flippedCards;
@@ -64,6 +68,7 @@ export class GameHelper {
 
   private handleMatchingPair(flippedCards: Set<HTMLElement>): Set<HTMLElement> {
     flippedCards.clear();
+    this.gameStateService.incrementFoundPairs();
     return flippedCards;
   }
 
@@ -79,8 +84,45 @@ export class GameHelper {
     }, GAME_CONFIG.FLIP_BACK_DELAY_MS);
     return flippedCards;
   }
+  checkIfGameWon(): void {
+    this.gameStateService.state$.subscribe((state) => {
+      if (state && state.foundPairs) {
+        if (this.isFoundAllPairs(state)) {
+          this.updateEndGameTimeAndShowAlert(state);
+        }
+      }
+    });
+  }
+  updateEndGameTimeAndShowAlert(state: GameState): void {
+    if (state.endGame) {
+      return;
+    }
+    state.endGame = Date.now();
+    state.score = this.countPoints(state);
+    this.showCongratulationAlert(state);
+  }
+  isFoundAllPairs(state: GameState): boolean {
+    return state ? state.foundPairs === difficulties[state.difficulty] : false;
+  }
+  showCongratulationAlert(state: GameState) {
+    if (state.endGame) {
+      alert(
+        `Congratulations ${state.name}! You won the game in ${
+          (state.endGame - state.startGame) / 1000
+        } seconds.`,
+      );
+    }
+  }
+  countPoints(state: GameState): number {
+    const basePoints = 100;
+    if (!state.endGame) {
+      return 0;
+    }
+    const timeBonus =
+      (state.endGame - state.startGame) / difficulties[state.difficulty];
+    return basePoints + timeBonus;
+  }
 }
-
 export const GAME_CONFIG = {
   MAX_FLIPPED_CARDS: 2,
   FLIPPED_CARD_CLASS: 'card--flipped',

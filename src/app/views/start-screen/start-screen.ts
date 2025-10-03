@@ -31,6 +31,8 @@ export class StartScreen {
     this.gameStateService.setState({
       name: this.playerName,
       difficulty: this.selectedDifficulty,
+      startGame: Date.now(),
+      foundPairs: 0,
     });
     this.router.navigate([PATHS.app]);
   }
