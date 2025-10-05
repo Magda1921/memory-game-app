@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { GameState, GameStateService } from './game-state';
 import { difficulties } from 'constants/gameDifficulties';
+import { ScoreService } from './score-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GameHelper {
-  constructor(private gameStateService: GameStateService) {}
+  constructor(
+    private gameStateService: GameStateService,
+    private scoreService: ScoreService,
+  ) {}
 
   flipCard(event: Event, flippedCards: Set<HTMLElement>): Set<HTMLElement> {
     if (flippedCards.size >= GAME_CONFIG.MAX_FLIPPED_CARDS) {
@@ -84,35 +88,26 @@ export class GameHelper {
     }, GAME_CONFIG.FLIP_BACK_DELAY_MS);
     return flippedCards;
   }
-  checkIfGameWon(): void {
-    this.gameStateService.state$.subscribe((state) => {
-      if (state && state.foundPairs) {
-        if (this.isFoundAllPairs(state)) {
-          this.updateEndGameTimeAndShowAlert(state);
-        }
-      }
-    });
-  }
-  updateEndGameTimeAndShowAlert(state: GameState): void {
+  updateEndGameTime(state: GameState): void {
     if (state.endGame) {
       return;
     }
+    if (state.score) {
+      return;
+    }
+
     state.endGame = Date.now();
     state.score = this.countPoints(state);
-    this.showCongratulationAlert(state);
+
+    this.scoreService.saveScore({
+      name: state.name,
+      points: state.score,
+    });
   }
   isFoundAllPairs(state: GameState): boolean {
     return state ? state.foundPairs === difficulties[state.difficulty] : false;
   }
-  showCongratulationAlert(state: GameState) {
-    if (state.endGame) {
-      alert(
-        `Congratulations ${state.name}! You won the game in ${
-          (state.endGame - state.startGame) / 1000
-        } seconds.`,
-      );
-    }
-  }
+
   countPoints(state: GameState): number {
     const basePoints = 100;
     if (!state.endGame) {

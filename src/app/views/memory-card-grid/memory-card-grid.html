@@ -5,3 +5,9 @@
     </div>
   }
 </div>
+<end-game-dialog
+  [showDialog]="showDialog()"
+  [playerName]="playerName()"
+  [points]="points()"
+  (closeDialog)="showDialog.set(false)"
+/>
