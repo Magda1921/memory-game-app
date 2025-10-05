@@ -30,4 +30,7 @@ export class GameStateService {
       });
     }
   }
+  resetGame() {
+    this.stateSubject.next(null);
+  }
 }

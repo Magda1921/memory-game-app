@@ -6,10 +6,11 @@ import { UnsplashPhoto } from '@app/types/unsplash';
 import { EndGameDialog } from '../end-game-dialog/end-game-dialog';
 import { Subscription } from 'rxjs';
 import { difficulties } from 'constants/gameDifficulties';
+import { Button } from '@app/components/button/button';
 
 @Component({
   selector: 'memory-card-grid',
-  imports: [EndGameDialog],
+  imports: [EndGameDialog, Button],
   templateUrl: './memory-card-grid.html',
   styleUrl: './memory-card-grid.scss',
 })
@@ -50,5 +51,8 @@ export class MemoryCardGrid implements OnInit {
   }
   flipCard(event: Event): void {
     this.flippedCards.set(this.gameHelper.flipCard(event, this.flippedCards()));
+  }
+  resetGame(): void {
+    this.gameStateService.resetGame();
   }
 }

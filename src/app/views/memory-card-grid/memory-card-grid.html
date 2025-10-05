@@ -5,6 +5,11 @@
     </div>
   }
 </div>
+<app-button
+  label="Reset game"
+  variantClass="primary"
+  (click)="resetGame()"
+></app-button>
 <end-game-dialog
   [showDialog]="showDialog()"
   [playerName]="playerName()"
