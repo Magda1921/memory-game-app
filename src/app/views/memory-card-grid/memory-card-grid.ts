@@ -19,6 +19,7 @@ export class MemoryCardGrid implements OnInit {
   countOfImages = input.required<number>();
   flippedCards = signal<Set<HTMLElement>>(new Set());
   points = signal<number>(0);
+  time = signal<string>('0s');
   playerName = signal<string>('');
   showDialog = signal<boolean>(false);
 
@@ -45,6 +46,11 @@ export class MemoryCardGrid implements OnInit {
 
         this.showDialog.set(true);
         this.points.set(state.score ?? 0);
+        this.time.set(
+          state.endGame && state.startGame
+            ? `${Math.floor((state.endGame - state.startGame) / 1000)}s`
+            : '0s',
+        );
         this.playerName.set(state.name ?? '');
       }
     });

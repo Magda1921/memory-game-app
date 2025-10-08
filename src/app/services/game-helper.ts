@@ -89,12 +89,7 @@ export class GameHelper {
     return flippedCards;
   }
   updateEndGameTime(state: GameState): void {
-    if (state.endGame) {
-      return;
-    }
-    if (state.score) {
-      return;
-    }
+    if (state.endGame || state.score) return;
 
     state.endGame = Date.now();
     state.score = this.countPoints(state);

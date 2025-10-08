@@ -11,6 +11,7 @@ import { Player, ScoreService } from '@app/services/score-service';
 export class EndGameDialog {
   playerName = input.required<string>();
   points = input.required<number>();
+  time = input.required<string>();
   showDialog = input<boolean>(false);
   scores: Player[] = [];
 
