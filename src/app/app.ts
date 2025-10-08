@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { GameStateService } from './services/game-state';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,16 @@ import { RouterOutlet } from '@angular/router';
 })
 export class App {
   protected readonly title = signal('MemoryApp');
+  constructor(
+    private gameStateService: GameStateService,
+    private router: Router,
+  ) {}
+
+  ngOnInit() {
+    this.gameStateService.state$.subscribe((state) => {
+      if (!state) {
+        this.router.navigate(['/']);
+      }
+    });
+  }
 }

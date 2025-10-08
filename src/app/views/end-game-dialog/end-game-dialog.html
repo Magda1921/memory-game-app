@@ -1,0 +1,33 @@
+@if (showDialog()) {
+  <div class="dialog">
+    <div class="score">
+      <h2>Congratulations, {{ playerName() }}!</h2>
+      <p>
+        Your score: <strong>{{ points() }}</strong> Your time:
+        <strong>{{ time() }}</strong>
+      </p>
+      <h3>Leaderboard</h3>
+      <table class="score__table">
+        <thead>
+          <tr>
+            <th>Player</th>
+            <th>Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (score of scores; track $index) {
+            <tr>
+              <td>{{ score.name }}</td>
+              <td>{{ score.points }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+      <app-button
+        label="Close"
+        variantClass="primary"
+        (click)="close()"
+      ></app-button>
+    </div>
+  </div>
+}
